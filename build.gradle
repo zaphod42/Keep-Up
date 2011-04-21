@@ -1,0 +1,15 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'jetty'
+
+sourceCompatibility = 1.6
+
+repositories {
+    mavenCentral()
+    mavenRepo urls: 'http://download.java.net/maven/2/'
+}
+
+dependencies {
+    compile group: 'com.sun.jersey', name: 'jersey-bundle', version: '1.6'
+    compile group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '2.1.12'
+}
