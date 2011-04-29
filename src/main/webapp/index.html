@@ -36,9 +36,12 @@
                     board.empty();
                     
                     $.each(playersResponse.players, function(index, player) {
-                        board.append($("<li class='ui-widget-content ui-corner-all'></li>").text(player.name + " @ " + player.url));
-                        $("#last-updated").text("Last Updated: " + (new Date()));
+                        var markup = $("<li class='ui-widget-content ui-corner-all'></li>");
+                        markup.append($("<span></span>").text(player.name + " @ " + player.url))
+                        markup.append($("<span class='score'></span>").text(player.score));
+                        board.append(markup);
                     });
+                    $("#last-updated").text("Last Updated: " + (new Date()));
                 });
             });
         </script>
@@ -49,6 +52,7 @@
         #start { float: right; }
         ul { list-style: none; padding: 0; }
         ul li { padding: 0.1em; margin: 0.1em; }
+        .score { padding-left: 5em; font-weight: bold; }
         </style>
     </head>
     <body>
