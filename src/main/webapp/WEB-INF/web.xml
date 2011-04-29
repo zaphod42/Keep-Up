@@ -5,7 +5,7 @@
         <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
         <init-param>
             <param-name>javax.ws.rs.Application</param-name>
-            <param-value>org.bgprocess.keepup.KeepUp</param-value>
+            <param-value>org.bgprocess.keepup.webinterface.KeepUp</param-value>
         </init-param>
         <init-param>
             <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
