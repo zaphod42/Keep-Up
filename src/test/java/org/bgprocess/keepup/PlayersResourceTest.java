@@ -6,6 +6,7 @@ import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
 import org.junit.Test;
 
+import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.json.JSONConfiguration;
 import com.sun.jersey.test.framework.JerseyTest;
 import com.sun.jersey.test.framework.WebAppDescriptor;
@@ -35,5 +36,15 @@ public class PlayersResourceTest extends JerseyTest{
 		assertEquals(1, players.length());
 		assertEquals("bob and joe", players.getJSONObject(0).get("name"));
 		assertEquals("http://example.com", players.getJSONObject(0).get("url"));
+	}
+
+	@Test public void
+	theUrlToTheAddedPlayerIsReturned() throws Exception {
+		ClientResponse response = resource().path("/players").put(ClientResponse.class, new JSONObject().accumulate("name", "bob and joe").accumulate("url", "http://example.com"));
+		
+		JSONObject player = resource().uri(response.getLocation()).get(JSONObject.class);
+		
+		assertEquals("bob and joe", player.get("name"));
+		assertEquals("http://example.com", player.get("url"));
 	}
 }
