@@ -4,17 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Players {
-	private static final Players instance = new Players();
-	
 	public List<Player> players = new ArrayList<Player>();
-
-	public static Players instance() {
-		return instance;
-	}
-	
-	public static void init() {
-		instance.players.clear();
-	}
 
 	public synchronized int add(Player player) {
 		players.add(player);

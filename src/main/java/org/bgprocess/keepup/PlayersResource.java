@@ -14,13 +14,13 @@ import javax.ws.rs.core.UriInfo;
 public class PlayersResource {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Players list() {
-		return Players.instance();
+	public Players list(@Context Players players) {
+		return players;
 	}
 	
 	@PUT
-	public Response addPlayer(Player player, @Context UriInfo uri) {
-		int id = Players.instance().add(player);
+	public Response addPlayer(Player player, @Context UriInfo uri, @Context Players players) {
+		int id = players.add(player);
 		return Response.noContent()
 					   .contentLocation(uri.getAbsolutePathBuilder().path(PlayersResource.class, "getPlayer").build(id))
 					   .build();
@@ -29,7 +29,7 @@ public class PlayersResource {
 	@GET
 	@Path("/{id: \\d+}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Player getPlayer(@PathParam("id") int id) {
-		return Players.instance().get(id);
+	public Player getPlayer(@PathParam("id") int id, @Context Players players) {
+		return players.get(id);
 	}
 }

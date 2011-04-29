@@ -14,7 +14,7 @@ import com.sun.jersey.test.framework.JerseyTest;
 import com.sun.jersey.test.framework.WebAppDescriptor;
 
 
-public class PlayersResourceTest extends JerseyTest{
+public class PlayersResourceTest extends JerseyTest {
 	public PlayersResourceTest() {
 		super(new WebAppDescriptor.Builder("javax.ws.rs.Application", KeepUp.class.getName())
 			.initParam(JSONConfiguration.FEATURE_POJO_MAPPING, "true")
