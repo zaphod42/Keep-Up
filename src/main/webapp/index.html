@@ -1,76 +1,76 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<title>Keep-Up</title>
-		<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.12.custom.css" rel="stylesheet" />	
-		<script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
-		<script type="text/javascript" src="js/jquery-ui-1.8.12.custom.min.js"></script>
-		<script type="text/javascript" src="js/jquery.periodicalupdater.js"></script>
-		<script type="text/javascript" src="js/json2.js"></script>
-		<script type="text/javascript">
-			$(function() {
-				function startGame() {
-					$.ajax({
-						url: "/keep-up/resources/players",
-						type: "PUT",
-						contentType: "application/json",
-						data: JSON.stringify({ name: $("#name").val(), url: $("#url").val() }),
-						success: function() { $("#join-dialog").dialog("close"); }
-					});
-					return false;
-				}
-				
-				$("button").button();
-				$("#join").click(function() { $("#join-dialog").dialog("open"); });
-				
-				$("#join-dialog").dialog({ 
-					autoOpen: false, 
-					resizable: false, 
-					buttons: { "Start": startGame } 
-				});
-				
-				$.PeriodicalUpdater("/keep-up/resources/players", { method: "get", maxCalls: 0, autoStop: 0 }, function(playersResponse) {
-					var board = $("#leaderboard");	
-					
-					board.empty();
-					
-					$.each(playersResponse.players, function(index, player) {
-						board.append($("<li class='ui-widget-content ui-corner-all'></li>").text(player.name + " @ " + player.url));
-						$("#last-updated").text("Last Updated: " + (new Date()));
-					});
-				});
-			});
-		</script>
-		<style>
-		.ui-widget-header { text-align: center; }
-		#last-updated { font-size: small; }
-		#join { font-size: large; float: right; margin-top: 0.5em; }
-		#start { float: right; }
-		ul { list-style: none; padding: 0; }
-		ul li { padding: 0.1em; margin: 0.1em; }
-		</style>
-	</head>
-	<body>
-	
-	<div class="ui-widget">
-		<h1 class="ui-widget-header ui-corner-all">
-			<button id="join">Join</button>
-			Leaderboard
-			<div id="last-updated">Waiting for first update.</div>
-		</h1>
-		<ul id="leaderboard"></ul>
-	</div>
-	
-	<div id="join-dialog" title="Join in and Keep Up!">
-		<form>
-			<table>
-				<tr><td><label for="name">Name</label></td><td><input type="text" id="name" class="ui-corner-all"></td></tr>
-				<tr><td><label for="url">URL</label></td><td><input type="text" id="url" class="ui-corner-all"></td></tr>
-			</table>
-		</form>
-	</div>
-	</body>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <title>Keep-Up</title>
+        <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.12.custom.css" rel="stylesheet" />    
+        <script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery-ui-1.8.12.custom.min.js"></script>
+        <script type="text/javascript" src="js/jquery.periodicalupdater.js"></script>
+        <script type="text/javascript" src="js/json2.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                function startGame() {
+                    $.ajax({
+                        url: "/keep-up/resources/players",
+                        type: "PUT",
+                        contentType: "application/json",
+                        data: JSON.stringify({ name: $("#name").val(), url: $("#url").val() }),
+                        success: function() { $("#join-dialog").dialog("close"); }
+                    });
+                    return false;
+                }
+                
+                $("button").button();
+                $("#join").click(function() { $("#join-dialog").dialog("open"); });
+                
+                $("#join-dialog").dialog({ 
+                    autoOpen: false, 
+                    resizable: false, 
+                    buttons: { "Start": startGame } 
+                });
+                
+                $.PeriodicalUpdater("/keep-up/resources/players", { method: "get", maxCalls: 0, autoStop: 0 }, function(playersResponse) {
+                    var board = $("#leaderboard");    
+                    
+                    board.empty();
+                    
+                    $.each(playersResponse.players, function(index, player) {
+                        board.append($("<li class='ui-widget-content ui-corner-all'></li>").text(player.name + " @ " + player.url));
+                        $("#last-updated").text("Last Updated: " + (new Date()));
+                    });
+                });
+            });
+        </script>
+        <style>
+        .ui-widget-header { text-align: center; }
+        #last-updated { font-size: small; }
+        #join { font-size: large; float: right; margin-top: 0.5em; }
+        #start { float: right; }
+        ul { list-style: none; padding: 0; }
+        ul li { padding: 0.1em; margin: 0.1em; }
+        </style>
+    </head>
+    <body>
+    
+    <div class="ui-widget">
+        <h1 class="ui-widget-header ui-corner-all">
+            <button id="join">Join</button>
+            Leaderboard
+            <div id="last-updated">Waiting for first update.</div>
+        </h1>
+        <ul id="leaderboard"></ul>
+    </div>
+    
+    <div id="join-dialog" title="Join in and Keep Up!">
+        <form>
+            <table>
+                <tr><td><label for="name">Name</label></td><td><input type="text" id="name" class="ui-corner-all"></td></tr>
+                <tr><td><label for="url">URL</label></td><td><input type="text" id="url" class="ui-corner-all"></td></tr>
+            </table>
+        </form>
+    </div>
+    </body>
 </html>
 
 
