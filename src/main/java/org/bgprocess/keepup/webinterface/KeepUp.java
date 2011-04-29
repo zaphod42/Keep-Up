@@ -1,4 +1,4 @@
-package org.bgprocess.keepup;
+package org.bgprocess.keepup.webinterface;
 
 import com.sun.jersey.api.core.PackagesResourceConfig;
 

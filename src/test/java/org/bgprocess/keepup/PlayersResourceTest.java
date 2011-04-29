@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.net.URI;
 
+import org.bgprocess.keepup.webinterface.KeepUp;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
 import org.junit.Test;

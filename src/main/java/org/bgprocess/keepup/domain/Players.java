@@ -1,4 +1,4 @@
-package org.bgprocess.keepup;
+package org.bgprocess.keepup.domain;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package org.bgprocess.keepup;
+package org.bgprocess.keepup.webinterface;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
@@ -9,6 +9,9 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+
+import org.bgprocess.keepup.domain.Player;
+import org.bgprocess.keepup.domain.Players;
 
 @Path("players")
 public class PlayersResource {
