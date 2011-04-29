@@ -7,6 +7,7 @@ public class Players {
     public List<Player> players = new ArrayList<Player>();
 
     public synchronized int add(Player player) {
+        player.score = 0;
         players.add(player);
         return players.size() - 1;
     }

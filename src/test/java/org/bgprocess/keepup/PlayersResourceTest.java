@@ -39,6 +39,7 @@ public class PlayersResourceTest extends JerseyTest {
 		assertEquals(1, players.length());
 		assertEquals("bob and joe", players.getJSONObject(0).get("name"));
 		assertEquals("http://example.com", players.getJSONObject(0).get("url"));
+		assertEquals(0, players.getJSONObject(0).getInt("score"));
 	}
 
 	@Test public void
@@ -49,5 +50,6 @@ public class PlayersResourceTest extends JerseyTest {
 		
 		assertEquals("bob and joe", player.get("name"));
 		assertEquals("http://example.com", player.get("url"));
+		assertEquals(0, player.getInt("score"));
 	}
 }
