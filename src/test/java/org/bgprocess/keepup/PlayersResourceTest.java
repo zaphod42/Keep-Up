@@ -2,6 +2,7 @@ package org.bgprocess.keepup;
 
 import static org.junit.Assert.assertEquals;
 
+import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
 import org.junit.Test;
 
@@ -22,5 +23,17 @@ public class PlayersResourceTest extends JerseyTest{
 		JSONObject players = new JSONObject(resource().path("/players").get(String.class));
 		
 		assertEquals(0, players.getJSONArray("players").length());
+	}
+	
+	@Test public void
+	afterAPlayerIsAddedItShowsUpInTheList() throws Exception {
+		resource().path("/players").put(new JSONObject().accumulate("name", "bob and joe").accumulate("url", "http://example.com"));
+		
+		JSONObject playersResponse = new JSONObject(resource().path("/players").get(String.class));
+		
+		JSONArray players = playersResponse.getJSONArray("players");
+		assertEquals(1, players.length());
+		assertEquals("bob and joe", players.getJSONObject(0).get("name"));
+		assertEquals("http://example.com", players.getJSONObject(0).get("url"));
 	}
 }
