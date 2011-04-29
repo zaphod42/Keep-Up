@@ -20,21 +20,21 @@ public class PlayersResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Players list() {
-    	return players;
+        return players;
     }
     
     @PUT
     public Response addPlayer(Player player, @Context UriInfo uri) {
-    	int id = players.add(player);
-    	return Response.noContent()
-    				   .contentLocation(uri.getAbsolutePathBuilder().path(PlayersResource.class, "getPlayer").build(id))
-    				   .build();
+        int id = players.add(player);
+        return Response.noContent()
+                       .contentLocation(uri.getAbsolutePathBuilder().path(PlayersResource.class, "getPlayer").build(id))
+                       .build();
     }
     
     @GET
     @Path("/{id: \\d+}")
     @Produces(MediaType.APPLICATION_JSON)
     public Player getPlayer(@PathParam("id") int id) {
-    	return players.get(id);
+        return players.get(id);
     }
 }
