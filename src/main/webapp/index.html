@@ -36,40 +36,31 @@
 					board.empty();
 					
 					$.each(playersResponse.players, function(index, player) {
-						board.append($("<li></li>").text(player.name + " @ " + player.url));
+						board.append($("<li class='ui-widget-content ui-corner-all'></li>").text(player.name + " @ " + player.url));
 						$("#last-updated").text("Last Updated: " + (new Date()));
 					});
 				});
 			});
 		</script>
 		<style>
-		.ui-widget-header {
-			text-align: center;
-		}
-		
-		#last-updated {
-			font-size: small;
-		}
-		
-		#join {
-			font-size: large;
-			float: right;
-			margin-top: 0.3em;
-		}
-		
-		#start {
-			float: right;
-		}
+		.ui-widget-header { text-align: center; }
+		#last-updated { font-size: small; }
+		#join { font-size: large; float: right; margin-top: 0.5em; }
+		#start { float: right; }
+		ul { list-style: none; padding: 0; }
+		ul li { padding: 0.1em; margin: 0.1em; }
 		</style>
 	</head>
 	<body>
 	
-	<h1 class="ui-widget-header ui-corner-all">
-		<button id="join">Join</button>
-		Leaderboard
-		<div id="last-updated">Waiting for first update.</div>
-	</h1>
-	<ul id="leaderboard"></ul>
+	<div class="ui-widget">
+		<h1 class="ui-widget-header ui-corner-all">
+			<button id="join">Join</button>
+			Leaderboard
+			<div id="last-updated">Waiting for first update.</div>
+		</h1>
+		<ul id="leaderboard"></ul>
+	</div>
 	
 	<div id="join-dialog" title="Join in and Keep Up!">
 		<form>
