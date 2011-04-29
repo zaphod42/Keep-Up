@@ -14,4 +14,17 @@ public class Players {
 	public static Players instance() {
 		return instance;
 	}
+	
+	public static void init() {
+		instance.players.clear();
+	}
+
+	public synchronized int add(Player player) {
+		players.add(player);
+		return players.size() - 1;
+	}
+
+	public Player get(int id) {
+		return players.get(id);
+	}
 }

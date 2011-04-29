@@ -2,6 +2,8 @@ package org.bgprocess.keepup;
 
 import static org.junit.Assert.assertEquals;
 
+import java.net.URI;
+
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
 import org.junit.Test;
@@ -42,7 +44,7 @@ public class PlayersResourceTest extends JerseyTest{
 	theUrlToTheAddedPlayerIsReturned() throws Exception {
 		ClientResponse response = resource().path("/players").put(ClientResponse.class, new JSONObject().accumulate("name", "bob and joe").accumulate("url", "http://example.com"));
 		
-		JSONObject player = resource().uri(response.getLocation()).get(JSONObject.class);
+		JSONObject player = resource().uri(new URI(response.getHeaders().getFirst("Content-Location"))).get(JSONObject.class);
 		
 		assertEquals("bob and joe", player.get("name"));
 		assertEquals("http://example.com", player.get("url"));
