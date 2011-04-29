@@ -10,7 +10,7 @@ import com.sun.jersey.spi.inject.SingletonTypeInjectableProvider;
 
 @Provider
 public class PlayersProvider extends SingletonTypeInjectableProvider<Context, Players> {
-	public PlayersProvider() {
-		super(Players.class, new Players());
-	}
+    public PlayersProvider() {
+    	super(Players.class, new Players());
+    }
 }
