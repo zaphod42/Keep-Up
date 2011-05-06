@@ -5,18 +5,19 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.is;
 
 import org.junit.Test;
+import org.mockito.Mockito;
 
 public class ExaminationRegistrarTest {
+    private Examiner examiner = Mockito.mock(Examiner.class);
+    private ExaminationRegistrar registrar = new ExaminationRegistrar(examiner);
+
     @Test public void
     hasNoCandidatesInTheBeginning() {
-        ExaminationRegistrar registrar = new ExaminationRegistrar();
         assertThat(registrar.numberRegistered(), is(0));
     }
     
     @Test public void
     aSignedUpCandidateIncreasesTheNumberOfRegistered() {
-        ExaminationRegistrar registrar = new ExaminationRegistrar();
-        
         registrar.signUp(new Candidate());
         
         assertThat(registrar.numberRegistered(), is(1));
@@ -25,10 +26,18 @@ public class ExaminationRegistrarTest {
     @Test public void
     providesAListOfTheRegisteredCandidates() {
         Candidate candidate = new Candidate();
-        ExaminationRegistrar registrar = new ExaminationRegistrar();
         
         registrar.signUp(candidate);
         
         assertThat(registrar.candidates(), hasItem(candidate));
+    }
+    
+    @Test public void
+    notifiesTheExaminerOfTheNewCandidate() {
+        Candidate candidate = new Candidate();
+        
+        registrar.signUp(candidate);
+        
+        Mockito.verify(examiner).examine(candidate);
     }
 }
