@@ -12,6 +12,7 @@ import org.mockito.Mockito;
 
 public class ExaminationRegistrarTest {
     private Examiner examiner = Mockito.mock(Examiner.class);
+    private Candidate candidate = Mockito.mock(Candidate.class);
     private ExaminationRegistrar registrar = new ExaminationRegistrar(examiner);
 
     @Test public void
@@ -21,15 +22,13 @@ public class ExaminationRegistrarTest {
     
     @Test public void
     aSignedUpCandidateIncreasesTheNumberOfRegistered() {
-        registrar.signUp(new Candidate());
+        registrar.signUp(candidate);
         
         assertThat(registrar.numberRegistered(), is(1));
     }
     
     @Test public void
     providesAListOfTheRegisteredCandidates() {
-        Candidate candidate = new Candidate();
-        
         registrar.signUp(candidate);
         
         assertThat(registrar.candidates(), hasItem(candidate));
@@ -37,8 +36,6 @@ public class ExaminationRegistrarTest {
     
     @Test public void
     notifiesTheExaminerOfTheNewCandidate() {
-        Candidate candidate = new Candidate();
-        
         registrar.signUp(candidate);
         
         Mockito.verify(examiner).examine(candidate);
