@@ -7,7 +7,7 @@ public class ExaminationRegistrar {
         return numberRegistered;
     }
 
-    public void signUp(Player player) {
+    public void signUp(Candidate candidate) {
         numberRegistered += 1;
     }
 }

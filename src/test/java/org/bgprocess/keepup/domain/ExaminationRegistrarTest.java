@@ -16,7 +16,7 @@ public class ExaminationRegistrarTest {
     aSignedUpCandidateIncreasesTheNumberOfRegistered() {
         ExaminationRegistrar registrar = new ExaminationRegistrar();
         
-        registrar.signUp(new Player());
+        registrar.signUp(new Candidate());
         
         assertThat(registrar.numberRegistered(), is(1));
     }
