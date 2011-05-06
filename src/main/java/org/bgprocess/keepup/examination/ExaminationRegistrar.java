@@ -1,4 +1,4 @@
-package org.bgprocess.keepup.domain;
+package org.bgprocess.keepup.examination;
 
 import java.util.Collection;
 import java.util.HashSet;

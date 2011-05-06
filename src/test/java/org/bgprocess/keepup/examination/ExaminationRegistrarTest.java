@@ -1,9 +1,12 @@
-package org.bgprocess.keepup.domain;
+package org.bgprocess.keepup.examination;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.is;
 
+import org.bgprocess.keepup.examination.Candidate;
+import org.bgprocess.keepup.examination.ExaminationRegistrar;
+import org.bgprocess.keepup.examination.Examiner;
 import org.junit.Test;
 import org.mockito.Mockito;
 
