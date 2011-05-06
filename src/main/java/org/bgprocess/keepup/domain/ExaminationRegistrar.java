@@ -1,13 +1,21 @@
 package org.bgprocess.keepup.domain;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
 public class ExaminationRegistrar {
-    private int numberRegistered = 0;
+    private final Set<Candidate> candidates = new HashSet<Candidate>();
 
     public int numberRegistered() {
-        return numberRegistered;
+        return candidates.size();
     }
 
     public void signUp(Candidate candidate) {
-        numberRegistered += 1;
+        candidates.add(candidate);
+    }
+
+    public Collection<Candidate> candidates() {
+        return candidates;
     }
 }
