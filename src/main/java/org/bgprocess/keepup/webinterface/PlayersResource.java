@@ -25,16 +25,16 @@ public class PlayersResource {
     
     @PUT
     public Response addPlayer(Player player, @Context UriInfo uri) {
-        int id = players.add(player);
+        String id = players.add(player);
         return Response.noContent()
                        .contentLocation(uri.getAbsolutePathBuilder().path(PlayersResource.class, "getPlayer").build(id))
                        .build();
     }
     
     @GET
-    @Path("/{id: \\d+}")
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Player getPlayer(@PathParam("id") int id) {
+    public Player getPlayer(@PathParam("id") String id) {
         return players.get(id);
     }
 }

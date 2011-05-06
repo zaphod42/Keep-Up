@@ -4,9 +4,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.is;
 
+import java.util.UUID;
+
 import org.bgprocess.keepup.examination.Candidate;
 import org.bgprocess.keepup.examination.ExaminationRegistrar;
 import org.bgprocess.keepup.examination.Examiner;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -39,5 +42,12 @@ public class ExaminationRegistrarTest {
         registrar.signUp(candidate);
         
         Mockito.verify(examiner).examine(candidate);
+    }
+    
+    @Test public void
+    providesAnIdentifierFortheTheCandidate() {
+        UUID id = registrar.signUp(candidate);
+        
+        assertThat(registrar.whoIs(id), Matchers.sameInstance(candidate));
     }
 }
