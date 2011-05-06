@@ -11,4 +11,13 @@ public class ExaminationRegistrarTest {
         ExaminationRegistrar registrar = new ExaminationRegistrar();
         assertThat(registrar.numberRegistered(), is(0));
     }
+    
+    @Test public void
+    aSignedUpCandidateIncreasesTheNumberOfRegistered() {
+        ExaminationRegistrar registrar = new ExaminationRegistrar();
+        
+        registrar.signUp(new Player());
+        
+        assertThat(registrar.numberRegistered(), is(1));
+    }
 }
