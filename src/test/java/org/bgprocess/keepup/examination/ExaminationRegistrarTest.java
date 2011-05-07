@@ -41,13 +41,39 @@ public class ExaminationRegistrarTest {
     notifiesTheExaminerOfTheNewCandidate() {
         registrar.signUp(candidate);
         
-        Mockito.verify(examiner).examine(candidate);
+        Mockito.verify(examiner).examine(Mockito.eq(candidate), Mockito.isA(MarkingSheet.class));
     }
     
     @Test public void
-    providesAnIdentifierFortheTheCandidate() {
+    providesAnIdentifierForTheCandidate() {
         UUID id = registrar.signUp(candidate);
         
         assertThat(registrar.whoIs(id), Matchers.sameInstance(candidate));
+    }
+    
+    @Test public void
+    candidateStartsWithBaselineResults() {
+        UUID id = registrar.signUp(candidate);
+        ExaminationResults results = registrar.resultsFor(id);
+        
+        assertThat(results.score(), is(0));
+        assertThat(results.questionsAnswered(), is(0));
+    }
+    
+    @Test public void
+    anExaminersMarksAreReflectedInTheCandidatesResults() {
+        Examiner examiner = new Examiner() {
+            @Override public void examine(Candidate candidate, MarkingSheet marks) {
+                marks.recordCorrectAnswerWorth(2);
+            }
+        };
+        ExaminationRegistrar registrar = new ExaminationRegistrar(examiner);
+        
+        UUID id = registrar.signUp(candidate);
+        
+        ExaminationResults results = registrar.resultsFor(id);
+        
+        assertThat(results.score(), is(2));
+        assertThat(results.questionsAnswered(), is(1));
     }
 }

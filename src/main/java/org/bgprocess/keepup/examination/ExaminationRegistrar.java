@@ -7,6 +7,8 @@ import java.util.UUID;
 
 public class ExaminationRegistrar {
     private final Map<UUID, Candidate> candidates = new HashMap<UUID, Candidate>();
+    private final Map<UUID, ScoreSheet> scores = new HashMap<UUID, ScoreSheet>();
+
     private final Examiner examiner;
 
     public ExaminationRegistrar(Examiner examiner) {
@@ -20,7 +22,10 @@ public class ExaminationRegistrar {
     public UUID signUp(Candidate candidate) {
         UUID id = UUID.randomUUID();
         candidates.put(id, candidate);
-        examiner.examine(candidate);
+
+        scores.put(id, new ScoreSheet());
+        
+        examiner.examine(candidate, scores.get(id));
         return id;
     }
 
@@ -30,5 +35,9 @@ public class ExaminationRegistrar {
 
     public Candidate whoIs(UUID id) {
         return candidates.get(id);
+    }
+
+    public ExaminationResults resultsFor(UUID id) {
+        return scores.get(id);
     }
 }

@@ -6,12 +6,13 @@ import java.util.UUID;
 import org.bgprocess.keepup.examination.Candidate;
 import org.bgprocess.keepup.examination.ExaminationRegistrar;
 import org.bgprocess.keepup.examination.Examiner;
+import org.bgprocess.keepup.examination.MarkingSheet;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 public class Players {
     private ExaminationRegistrar registrar = new ExaminationRegistrar(new Examiner() {
         @Override
-        public void examine(Candidate candidate) {}
+        public void examine(Candidate candidate, MarkingSheet marks) {}
     });
 
     public synchronized String add(Player player) {
