@@ -3,7 +3,7 @@ package org.bgprocess.keepup.webinterface;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.ext.Provider;
 
-import org.bgprocess.keepup.domain.Players;
+import org.bgprocess.keepup.webinterface.data.Players;
 
 import com.sun.jersey.spi.inject.SingletonTypeInjectableProvider;
 

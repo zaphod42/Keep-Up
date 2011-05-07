@@ -10,8 +10,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import org.bgprocess.keepup.domain.Player;
-import org.bgprocess.keepup.domain.Players;
+import org.bgprocess.keepup.webinterface.data.Player;
+import org.bgprocess.keepup.webinterface.data.Players;
 
 @Path("players")
 public class PlayersResource {
