@@ -16,8 +16,9 @@ public class Players {
     });
 
     public synchronized String add(Player player) {
-        player.score = 0;
-        return registrar.signUp(player).toString();
+        UUID id = registrar.signUp(player);
+        player.registeredAs(id, registrar);
+        return id.toString();
     }
 
     public Player get(String id) {
